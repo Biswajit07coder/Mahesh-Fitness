@@ -4,7 +4,14 @@
 // In production set VITE_API_BASE_URL to the deployed backend origin.
 // ---------------------------------------------------------------------------
 
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+function getBaseUrl(): string {
+  const env = (import.meta.env.VITE_API_BASE_URL ?? "").trim().replace(/\/$/, "");
+  if (!env) return "";
+  if (env.startsWith("http://") || env.startsWith("https://")) return env;
+  return `https://${env}`;
+}
+
+const BASE = getBaseUrl();
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
