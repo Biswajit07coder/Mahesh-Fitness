@@ -43,7 +43,7 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json(
-    { ok: true, id: lead.id, whatsapp: buildWhatsAppLink(lead.name) },
+    { ok: true, id: lead.id, whatsapp: buildWhatsAppLink(lead) },
     { status: 201 },
   );
 }
