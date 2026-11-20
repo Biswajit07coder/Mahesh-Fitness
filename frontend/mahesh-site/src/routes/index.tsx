@@ -61,32 +61,66 @@ function Nav() {
 function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.3]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.02, 1.18]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
+  const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const words = ["Strength.", "Endurance.", "Balance."];
   return (
-    <section ref={ref} className="relative h-[110vh] overflow-hidden">
-      <motion.img src={heroImg} alt="Mahesh running on a forest trail" width={1920} height={1088}
-        style={{ scale, y }} className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-      <motion.div style={{ y: textY, opacity: fade }} className="relative z-10 flex h-screen flex-col justify-end px-[6vw] pb-[14vh]">
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 1 }}
-          className="mb-5 w-fit rounded-full btn-ghost-sand !px-4 !py-1.5 text-xs uppercase tracking-[0.25em]">Kolkata · Online & Offline</motion.p>
-        <h1 className="font-display text-[clamp(3.2rem,10vw,9rem)] leading-[0.88] text-sand-light drop-shadow-2xl">
+    <section ref={ref} className="relative min-h-[100svh] h-[100dvh] md:h-[110vh] overflow-hidden">
+      <motion.img
+        src={heroImg}
+        alt="Mahesh Shukla training outdoors"
+        width={1920}
+        height={1088}
+        style={{ scale, y }}
+        className="absolute inset-0 h-full w-full object-cover object-[center_28%] sm:object-[center_35%] md:object-center"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, color-mix(in oklab, var(--forest-deep) 65%, transparent) 0%, color-mix(in oklab, var(--forest-deep) 20%, transparent) 40%, color-mix(in oklab, var(--forest-deep) 85%, transparent) 85%, var(--background) 100%)",
+        }}
+      />
+      <motion.div
+        style={{ y: textY, opacity: fade }}
+        className="relative z-10 flex h-full flex-col justify-end px-5 sm:px-[6vw] pb-24 sm:pb-[14vh]"
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 1 }}
+          className="mb-4 sm:mb-5 w-fit rounded-full btn-ghost-sand !px-3.5 sm:!px-4 !py-1 text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]"
+        >
+          Kolkata · Online & Offline
+        </motion.p>
+        <h1 className="font-display text-[clamp(2.4rem,7.5vw,8.5rem)] leading-[0.92] text-sand-light drop-shadow-2xl">
           {words.map((w, i) => (
             <span key={w} className="block overflow-hidden">
-              <motion.span className="block" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.4 + i * 0.15, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}>
+              <motion.span
+                className="block"
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ delay: 0.4 + i * 0.15, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              >
                 {i === 2 ? <span className="text-sand">{w}</span> : w}
               </motion.span>
             </span>
           ))}
         </h1>
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 1 }}
-          className="mt-8 flex flex-wrap items-center gap-4">
-          <a href="#contact" className="btn-hero">Start training <ArrowRight className="size-5" /></a>
-          <a href="#about" className="btn-ghost-sand">Meet Mahesh</a>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 1 }}
+          className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
+        >
+          <a href="#contact" className="btn-hero text-sm sm:text-base">
+            Start training <ArrowRight className="size-4 sm:size-5" />
+          </a>
+          <a href="#about" className="btn-ghost-sand text-sm sm:text-base">
+            Meet Mahesh
+          </a>
         </motion.div>
       </motion.div>
     </section>
