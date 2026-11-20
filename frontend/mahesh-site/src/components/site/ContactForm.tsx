@@ -72,7 +72,14 @@ export function ContactForm({ whatsappLink }: { whatsappLink?: string | null }) 
   async function onSubmit(values: FormValues) {
     try {
       const res = await submitLead.mutateAsync(values);
-      if (res.whatsapp) setWhatsapp(res.whatsapp);
+      if (res.whatsapp) {
+        setWhatsapp(res.whatsapp);
+        try {
+          window.open(res.whatsapp, "_blank");
+        } catch {
+          // ignore pop-up block
+        }
+      }
       setSubmitted(true);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
@@ -87,7 +94,7 @@ export function ContactForm({ whatsappLink }: { whatsappLink?: string | null }) 
         <div>
           <h3 className="text-3xl font-black text-sand-light">Enquiry sent!</h3>
           <p className="mt-2 text-sand-light/70">
-            I'll get back to you soon. Talk to you on WhatsApp for a quicker reply.
+            Your details have been received and sent to Mahesh. Connect directly on WhatsApp for an immediate response:
           </p>
         </div>
         {whatsapp && (
@@ -95,9 +102,9 @@ export function ContactForm({ whatsappLink }: { whatsappLink?: string | null }) 
             href={whatsapp}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 rounded-full bg-sage px-6 py-3 text-sm font-extrabold text-forest-deep transition-all duration-300 hover:scale-105"
+            className="flex items-center gap-2 rounded-full bg-sage px-6 py-3.5 text-sm font-extrabold text-forest-deep shadow-lg transition-all duration-300 hover:scale-105 hover:bg-sand"
           >
-            Message on WhatsApp <ArrowRight className="size-4" />
+            Chat with Mahesh on WhatsApp <ArrowRight className="size-4" />
           </a>
         )}
       </div>

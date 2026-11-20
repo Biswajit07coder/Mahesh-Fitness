@@ -9,7 +9,7 @@ export const SOCIALS = [
   { label: "WhatsApp", href: "https://wa.me/916290718879?text=Hi%20Mahesh%2C%20I%27d%20like%20to%20know%20more%20about%20your%20training.", Icon: MessageCircle },
   {
     label: "Gmail",
-    href: "https://mail.google.com/mail/?view=cm&fs=1&to=mashukla090@gmail.com&su=Fitness%20Training%20Enquiry",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=maheshabuilt@gmail.com&su=Fitness%20Training%20Enquiry",
     Icon: Mail,
   },
 ];
